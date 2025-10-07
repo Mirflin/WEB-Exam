@@ -1,6 +1,6 @@
 <script setup>
 import GuestLayout from '@/layouts/GuestLayout.vue';
-import { ShieldUser, HouseHeart, Car, TrafficCone, House } from 'lucide-vue-next';
+import { ShieldUser, HouseHeart, Car, TrafficCone, House, Phone } from 'lucide-vue-next';
 
 </script>
 
@@ -25,7 +25,7 @@ import { ShieldUser, HouseHeart, Car, TrafficCone, House } from 'lucide-vue-next
 			</div>
 		</section>
 
-		<section id="parmums" class="mt-50 w-full flex flex-row-reverse justify-between items-center text-right p-10 animate__animated animate__fadeInUp">
+		<section id="parmums" class="mt-50 w-full flex flex-row-reverse justify-between items-center text-right p-10 animate__animated animate__fadeInUp scroll-mt-50">
 			<div class="bg-[#12182B]/30 backdrop-blur-md p-5 rounded-2xl shadow-2xl max-w-4xl backdrop-blur-md bg-opacity-10">
 				<h2 class="text-4xl font-bold text-white mb-5 hover:text-gray-200 transition-colors duration-300">Par mums</h2>
 				<p class="max-w-3xl text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
@@ -36,8 +36,8 @@ import { ShieldUser, HouseHeart, Car, TrafficCone, House } from 'lucide-vue-next
 			<img src="@/assets/Home/protection.png" class="w-50"></img>
 		</section>
 
-		<section id="pakalpojumi" class="mt-50">
-			<div class="bg-[#12182B]/30 backdrop-blur-md p-5 rounded-2xl shadow-2xl w-full backdrop-blur-md bg-opacity-10">
+		<section id="pakalpojumi" class="mt-50 scroll-mt-50">
+			<div class="bg-[#12182B]/30 backdrop-blur-md p-5 rounded-2xl shadow-2xl w-full backdrop-blur-md bg-opacity-10 ">
 				<h2 class="text-4xl font-bold text-white mb-5 text-center hover:text-gray-200 transition-colors duration-300">Pakalpojumi</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 					<div class="flex flex-col gap-3 p-5 bg-[#1E2A45]/50 rounded-lg hover:bg-[#1E2A45]/70 transition-colors duration-300 hover:scale-[1.05]">
@@ -73,18 +73,19 @@ import { ShieldUser, HouseHeart, Car, TrafficCone, House } from 'lucide-vue-next
 
 		<section id="kontakti" class="w-full mt-50 flex flex-col justify-start items-start text-left p-10 gap-5 animate__animated animate__fadeInUp">
 			<div class="bg-[#12182B]/30 flex flex-row gap-5 backdrop-blur-md p-5 rounded-2xl shadow-2xl w-full backdrop-blur-md bg-opacity-10">
-				<div class="flex-1">
-					<h2 class="text-4xl font-bold text-white mb-5 hover:text-gray-200 transition-colors duration-300">Kontakti</h2>
+				<div class="flex-1 flex flex-col">
+					<h2 class="text-4xl font-bold text-white mb-5 hover:text-gray-200 transition-colors duration-300 flex gap-5 items-center"><Phone></Phone>Kontakti</h2>
 					<p class="max-w-3xl text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
 						Ja Jums ir kādi jautājumi vai vēlaties uzzināt vairāk par mūsu pakalpojumiem, lūdzu, sazinieties ar mums:
 					</p>
-					<ul class="list-disc list-inside text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
+					<ul class="list-disc mt-10 list-inside text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
+						<li>Reģistrācijas numurs: 0000000000</li>
 						<li>Tālrunis: +371 123 456 78</li>
-						<li>E-pasts:</li>
+						<li>E-pasts: shieldpoint@shield.com</li>
 					</ul>
 				</div>
 				<div class="flex-1">
-
+					<iframe class="w-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d388.9228426891188!2d21.02692143276609!3d56.53526972166431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46faa7ccb271be93%3A0xf9d1bf3406ae7d9d!2sLiep%C4%81jas%20Valsts%20tehnikums!5e0!3m2!1sen!2slv!4v1759862295897!5m2!1sen!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</section>
