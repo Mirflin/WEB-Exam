@@ -7,6 +7,7 @@ import Header from '@/components/Header.vue';
 <template>
     <div class="image min-h-screen bg-cover bg-center flex flex-col">
         <Header />
+        <div class="mb-55"></div>
         <slot />
     </div>
 </template>
