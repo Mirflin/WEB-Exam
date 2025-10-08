@@ -23,7 +23,7 @@ const emit = defineEmits(['component']);
             <div class="h-full p-5 flex flex-col items-start gap-3">
                 <Button @click="emit('component', 'profile')" :class="props.component === 'profile' ? 'bg-gray-700' : ''" class="text-lg p-2 rounded-md hover:bg-gray-700 cursor-pointer w-full text-left">Mans profils</Button>
                 <Button @click="emit('component', 'policies')" :class="props.component === 'policies' ? 'bg-gray-700' : ''" class="text-lg p-2 rounded-md hover:bg-gray-700 cursor-pointer w-full text-left">Apdrošināšanas polises</Button>
-                <Button @click="emit('component', 'payments')" :class="props.component === 'payments' ? 'bg-gray-700' : ''" class="text-lg p-2 rounded-md hover:bg-gray-700 cursor-pointer w-full text-left">Maksājumi</Button>
+                <Button @click="emit('component', 'payments')" :class="props.component === 'payments' ? 'bg-gray-700' : ''" class="text-lg p-2 rounded-md hover:bg-gray-700 cursor-pointer w-full text-left">Maksājumi vēsture</Button>
             </div>
         </div>
     </div>

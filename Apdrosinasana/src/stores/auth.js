@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
 
         try{
             console.log(credentials)
-            await axios.post('/register', credentials)
+            await axios.post('/api/user-create', credentials)
             await attempt()
 
             return null

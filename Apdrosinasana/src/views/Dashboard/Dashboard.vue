@@ -10,15 +10,11 @@ const open = ref(true)
 const comp = useLocalStorage('component', 'profile')
 
 onMounted(() => {
-    document.body.style.overflow = 'hidden'
     if(window.innerWidth < 768){
         open.value = false
     }
 })
 
-onUnmounted(() => {
-  document.body.style.overflow = ''
-})
 
 const setComponent = (component) => {
     comp.value = component
@@ -44,5 +40,8 @@ const components = {
 </template>
 
 <style scoped>
-
+body {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
 </style>

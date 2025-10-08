@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('personal_code');
             $table->string('address');
-            $table->date('date_of_birth');
+            $table->date('date_of_birth')->nullable();
             $table->string('phone');
             $table->timestamps();
             $table->softDeletes();

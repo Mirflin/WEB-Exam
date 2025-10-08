@@ -14,7 +14,7 @@ const router = useRouter()
 const form = ref({
     name: '',
     email: '',
-    code: '',
+    personal_code: '',
     address: '',
     phone: '',
     password:'',
@@ -34,7 +34,7 @@ const submit = async() => {
         push.error('Parolam jābūt vismaz 8 simbolus garam!')
         loading.value = false
         return
-    }else if(form.value.code.length !== 11){
+    }else if(form.value.personal_code.length !== 11){
         push.error('Personālajam kodam jābūt 11 simbolus garam!')
         loading.value = false
         return
@@ -89,7 +89,7 @@ const submit = async() => {
                     </div>
                     <div class="flex flex-col gap-1">
                         <Label class="text-lg w-40">Personālais kods: </Label>
-                        <Input v-model="form.code" class="text-xl"></Input>
+                        <Input v-model="form.personal_code" class="text-xl"></Input>
                     </div>
                     <div class="flex flex-col gap-1">
                         <Label class="text-lg w-20">Address: </Label>

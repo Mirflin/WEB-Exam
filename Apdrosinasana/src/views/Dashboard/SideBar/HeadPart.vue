@@ -41,7 +41,7 @@ const logOut = async() => {
                     <ChevronUpIcon v-else />
                 </DropdownMenuTrigger>
 
-                <DropdownMenuContent class="mt-2" :align="'end'">
+                <DropdownMenuContent class="mt-2 bg-white" :align="'end'">
                     <DropdownMenuItem @click="logOut" class="cursor-pointer hover:bg-gray-200"><CirclePowerIcon />Iziet</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

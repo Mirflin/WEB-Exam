@@ -23,12 +23,12 @@ class Policies extends Model
 
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class, 'policy_id');
     }
 
     public function claims()
     {
-        return $this->hasMany(Claim::class);
+        return $this->hasMany(Claim::class, 'policy_id');
     }
 
     public function status()
