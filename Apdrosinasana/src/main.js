@@ -6,7 +6,8 @@ import { createPinia } from 'pinia'
 
 import { createNotivue } from 'notivue'
 import 'notivue/notification.css'
-import 'notivue/animations.css' 
+import 'notivue/animations.css'
+import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 
 import App from './App.vue'
 import router from './router'
@@ -17,5 +18,6 @@ const notivue = createNotivue()
 app.use(createPinia())
 app.use(router)
 app.use(notivue)
+app.use(autoAnimatePlugin)
 
 app.mount('#app')

@@ -19,12 +19,13 @@ const form = ref({
 const loading = ref(false)
 
 const submit = async() => {
-    const response = auth.login(form.value)
+    const response = await auth.login(form.value)
 
     if(!response){
         push.success('Veiksmīga ielagošana!')
         router.push('/dashboard')
     }else{
+        console.log(response)
         push.error('Nepareiz parols vai e-pasts!')
     }
 }

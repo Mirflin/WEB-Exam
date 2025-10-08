@@ -1,5 +1,6 @@
 <script setup>
-import Button from './ui/button/Button.vue';
+import { LogInIcon } from 'lucide-vue-next';
+
 </script>
 
 <template>
@@ -10,7 +11,7 @@ import Button from './ui/button/Button.vue';
             <RouterLink to="/#parmums" href="#parmums" class="text-white text-lg font-semibold hover:underline ml-4">Par mums</RouterLink>
             <RouterLink to="/#pakalpojumi" href="#pakalpojumi" class="text-white text-lg font-semibold hover:underline ml-4">Pakalpojumi</RouterLink>
             <RouterLink to="/#kontakti" href="#kontakti" class="text-white text-lg font-semibold hover:underline ml-4">Kontakti</RouterLink>
-            <RouterLink to="/login" class="ml-4 bg-white text-blue-600 font-bold py-2 px-4 rounded-full hover:bg-gray-200 cursor-pointer">Ielogoties</RouterLink>
+            <RouterLink to="/login" class="font-bold py-2 px-4 rounded-full text-white hover:text-gray-500 cursor-pointer"><LogInIcon></LogInIcon></RouterLink>
         </nav>
     </div>
 </template>

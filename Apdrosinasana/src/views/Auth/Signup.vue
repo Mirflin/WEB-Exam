@@ -24,7 +24,39 @@ const form = ref({
 const loading = ref(false)
 
 const submit = async() => {
-    const response = auth.register(form.value)
+    loading.value = true
+
+    if(form.value.password !== form.value.password_confirmation){
+        push.error('Paroli nesakrīt!')
+        loading.value = false
+        return
+    }else if(form.value.password.length < 8){
+        push.error('Parolam jābūt vismaz 8 simbolus garam!')
+        loading.value = false
+        return
+    }else if(form.value.code.length !== 11){
+        push.error('Personālajam kodam jābūt 11 simbolus garam!')
+        loading.value = false
+        return
+    }else if(form.value.phone.length < 8){
+        push.error('Telefona numuram jābūt vismaz 8 simbolus garam!')
+        loading.value = false
+        return
+    }else if(!form.value.email.includes('@') || !form.value.email.includes('.')){
+        push.error('Ievadiet derīgu e-pastu!')
+        loading.value = false
+        return
+    }else if(form.value.name.length < 2){
+        push.error('Vārdam jābūt vismaz 2 simbolus garam!')
+        loading.value = false
+        return
+    }else if(form.value.address.length < 5){
+        push.error('Adresei jābūt vismaz 5 simbolus garam!')
+        loading.value = false
+        return
+    }
+
+    const response = await auth.register(form.value)
 
     if(!response){
         router.push('/login')
