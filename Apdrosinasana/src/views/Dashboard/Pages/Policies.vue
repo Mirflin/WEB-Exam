@@ -249,7 +249,7 @@ const restoreItem = async(id) => {
                     </div>
                     <div class="absolute right-1 bottom-1 flex gap-2">
                         <HandCoins @click="itemId = value.id; itemDialog = true" class="cursor-pointer opacity-50 hover:opacity-100 hover:text-yellow-500" />
-                        <TrashIcon v-if="value.status.id !== 3" @click="itemId = value.id; deleteDialog = true" class="cursor-pointer opacity-50 hover:opacity-100 hover:text-red-500" />
+                        <TrashIcon @click="itemId = value.id; deleteDialog = true" class="cursor-pointer opacity-50 hover:opacity-100 hover:text-red-500" />
                         <ArchiveRestore v-if="value.status.id === 3" @click="restoreItem(value.id)" class="cursor-pointer opacity-50 hover:opacity-100 hover:text-green-500" />
                     </div>
                     <div class="font-semibold">{{ value.policy_number }}</div>

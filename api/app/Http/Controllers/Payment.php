@@ -13,7 +13,7 @@ class Payment extends Controller
             return response()->json(['message' => 'Client not found'], 404);
         }
 
-        $payments = \App\Models\Payment::with('policy', 'status')->whereHas('policy', function ($query) use ($client) {
+        $payments = \App\Models\Payment::with('policy', 'status', 'policy.client')->whereHas('policy', function ($query) use ($client) {
             $query->where('client_id', $client->id);
         })->get();
 

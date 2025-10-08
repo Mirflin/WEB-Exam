@@ -17,6 +17,7 @@ Route::post('/clients', function (Request $request) {
 
 Route::post('/user-update', [App\Http\Controllers\User::class, 'update'])->middleware('auth:sanctum');
 
+
 Route::post('/policies', [App\Http\Controllers\Policy::class, 'list'])->middleware('auth:sanctum');
 
 Route::post('/policies-create', [App\Http\Controllers\Policy::class, 'create'])->middleware('auth:sanctum');
