@@ -1,7 +1,17 @@
 <script setup>
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import { ShieldUser, HouseHeart, Car, TrafficCone, House, Phone } from 'lucide-vue-next';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 
+const contacts = ref({});
+const loading = ref(false);
+onMounted(async() => {
+	loading.value = true;
+	const response = await axios.get('/api/contacts');
+	contacts.value = response.data;
+	loading.value = false;
+});
 </script>
 
 <template>
@@ -78,10 +88,10 @@ import { ShieldUser, HouseHeart, Car, TrafficCone, House, Phone } from 'lucide-v
 					<p class="max-w-3xl text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
 						Ja Jums ir kādi jautājumi vai vēlaties uzzināt vairāk par mūsu pakalpojumiem, lūdzu, sazinieties ar mums:
 					</p>
-					<ul class="list-disc mt-10 list-inside text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
-						<li>Reģistrācijas numurs: 0000000000</li>
-						<li>Tālrunis: +371 123 456 78</li>
-						<li>E-pasts: shieldpoint@shield.com</li>
+					<ul v-if="!loading" class="list-disc mt-10 list-inside text-lg text-white leading-relaxed hover:text-gray-200 transition-colors duration-300">
+						<li>Reģistrācijas numurs: {{ contacts.registration }}</li>
+						<li>Tālrunis: +371 {{ contacts.phone }}</li>
+						<li>E-pasts: {{ contacts.email }}</li>
 					</ul>
 				</div>
 				<div class="flex-1">

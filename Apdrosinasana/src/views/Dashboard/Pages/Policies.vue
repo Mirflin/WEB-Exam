@@ -123,7 +123,7 @@ const deleteItem = async() => {
     loading.value = true;
     try {
         await axios.post('/api/policies-delete', { policy_id: itemId.value });
-        push.success('Polise veiksmīgi izdzēsta!');
+        push.success('Poliss veiksmīgi izdzēsts!');
         fetch();
     } catch (error) {
         push.error('Kļūda, mēģiniet vēlreiz!');
@@ -140,7 +140,7 @@ const restoreItem = async(id) => {
     loading.value = true;
     try {
         await axios.post('/api/policies-restore', { policy_id: id });
-        push.success('Polise veiksmīgi atjaunota!');
+        push.success('Poliss veiksmīgi atjaunots!');
         fetch();
     } catch (error) {
         push.error('Kļūda, mēģiniet vēlreiz!');

@@ -15,12 +15,15 @@ class User extends Controller
             'personal_code' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:20',
+            'level'=> 'nullable|integer|in:1,2',
         ]);
 
         $user = \App\Models\User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
+            'role_id' => $validatedData['level'] ?? 2,
+            'active' => true,
         ]);
 
         $client = new \App\Models\Client([
@@ -40,6 +43,15 @@ class User extends Controller
         $user = \App\Models\User::find($user_id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $image_base64 = $request->input('avatar');
+        if ($image_base64) {
+            $image_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image_base64));
+            $image_name = 'avatar_' . time() . '.png';
+            $image_path = public_path('storage/avatars/' . $image_name);
+            file_put_contents($image_path, $image_data);
+            $user->avatar = $image_name;
         }
 
         $validatedData = $request->validate([

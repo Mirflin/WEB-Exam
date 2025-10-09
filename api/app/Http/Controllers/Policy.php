@@ -52,7 +52,7 @@ class Policy extends Controller
         }
 
         $validatedData = $request->validate([
-            'policy_number' => 'required|string|max:50|unique:policies',
+            'policy_number' => 'required|string|unique:policies',
             'type' => 'required|string|max:50',
             'start_date' => 'required|date',
             'end_date' => 'required|date',

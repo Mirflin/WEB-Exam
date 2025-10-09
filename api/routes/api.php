@@ -38,3 +38,27 @@ Route::post('/all-users', [App\Http\Controllers\User::class, 'allUsers'])->middl
 Route::get('/polises-list', [App\Http\Controllers\Policy::class, 'allPolises'])->middleware('auth:sanctum');
 
 Route::post('/polis-delete', [App\Http\Controllers\Policy::class, 'deletePolise'])->middleware('auth:sanctum');
+
+Route::get('/payments-list', [App\Http\Controllers\Payment::class, 'allPayments'])->middleware('auth:sanctum');
+
+Route::get('/contacts', function () {
+    return \App\Models\Contact::first();
+});
+
+Route::post('/contacts-create', function (Request $request) {
+    $validatedData = $request->validate([
+        'phone' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'registration' => 'required|string|max:255',
+    ]);
+
+    $contact = \App\Models\Contact::find(1);
+    $contact->phone = $validatedData['phone'];
+    $contact->email = $validatedData['email'];
+    $contact->registration = $validatedData['registration'];
+    $contact->save();
+
+    return response()->json(['message' => 'Contact created successfully', 'contact' => $contact], 201);
+})->middleware('auth:sanctum');
+
+Route::get('/admin-data', [App\Http\Controllers\Admin::class, 'adminData'])->middleware('auth:sanctum');

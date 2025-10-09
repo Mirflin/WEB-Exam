@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('policy_id');
-            $table->foreign('policy_id')->references('id')->on('policies')->onDelete('cascade');
-            $table->decimal('amount', 10, 2)->nullable(false);
-            $table->date('payment_date');
-            $table->unsignedBigInteger('status')->default(0);
+            $table->string('phone');
+            $table->string('email');
+            $table->string('registration');
             $table->timestamps();
         });
+
+        DB::table('contacts')->insert([
+            'phone' => '+371 12345678',
+            'email' => 'example@example.com',
+            'registration' => '2025-10-09',
+        ]);
     }
 
     /**
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('contacts');
     }
 };

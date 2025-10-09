@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedBigInteger('role_id')->default(2);
             $table->foreign('role_id')->references('id')->on('user_roles');
+            $table->string('avatar')->nullable();
             $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();

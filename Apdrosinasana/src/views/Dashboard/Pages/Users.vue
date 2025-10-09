@@ -54,13 +54,16 @@ const fetchUsers = async () => {
 };
 
 const cols = ref([
-    { title: 'ID', field: 'id', sortable: true },
-    { title: 'Vārds', field: 'name', sortable: true },
-    { title: 'E-pasts', field: 'email', sortable: true },
-    { title: 'Līmenis', field: 'role_id', sortable: true },
-    { title: 'Izveidots', field: 'created_at', sortable: true },
-    { title: 'Statuss', field: 'active', sortable: true },
-    { title: 'Darbības', field: 'darbibas', sortable: true },
+    { title: 'ID', field: 'id', sortable: false },
+    { title: 'Vārds', field: 'name', sortable: false },
+    { title: 'Personālais kods', field: 'client.personal_code', sortable: false },
+    { title: 'Adrese', field: 'client.address', sortable: false },
+    { title: 'Telefons', field: 'client.phone', sortable: false },
+    { title: 'E-pasts', field: 'email', sortable: false },
+    { title: 'Līmenis', field: 'role_id', sortable: false },
+    { title: 'Izveidots', field: 'created_at', sortable: false },
+    { title: 'Statuss', field: 'active', sortable: false },
+    { title: 'Darbības', field: 'darbibas', sortable: false },
 ]);
 
 const modalOpen = ref(false);
@@ -110,6 +113,10 @@ const saveChanges = async () => {
     }else if(!form.value.name || !form.value.email || !form.value.personal_code || !form.value.address || !form.value.phone || !form.value.level){
         push.error('Lūdzu, aizpildiet visus obligātos laukus!');
         return;
+    }else if(form.value.personal_code.length !== 11){
+        push.error('Personālajam kodam jābūt 11 simbolus garam!')
+        loading.value = false
+        return
     }
 
     if(creating.value){
@@ -282,7 +289,7 @@ const creating = ref(false);
                 <Button @click="openEditModal" class="cursor-pointer bg-green-500 hover:bg-green-600 text-white">Jauns +</Button>
             </div>
         </div>
-        <vue3-datatable :rows="users" :columns="cols" :loading="loading" :sortable="true" :columnFilter="true">
+        <vue3-datatable :rows="users" :columns="cols" :loading="loading" :sortable="false" :columnFilter="true">
 
             <template #role_id="data">
                 <span v-if="data.value.role_id == 1" class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">Admins</span>

@@ -56,13 +56,16 @@ const save = async() => {
 
     try {
         const response = await axios.post('/api/user-update', {
+            id: auth.user.id,
             name: form.value.name,
             email: form.value.email,
             personal_code: form.value.personal_code,
             phone: form.value.phone,
             address: form.value.address,
+            avatar: form.value.avatar,
         });
     } catch (error) {
+        console.log(error);
         push.error('Kļūda, mēģiniet vēlreiz!');
         loading.value = false;
         return;
@@ -83,7 +86,21 @@ const form = ref({
     personal_code: 0,
     phone: 0,
     address: 0,
+    avatar: null,
 });
+
+const fileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            form.value.avatar = e.target.result;
+            console.log(form.value.avatar);
+            console.log(e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+};
 
 </script>
 
@@ -95,7 +112,11 @@ const form = ref({
         <div class="pl-10 flex flex-col items-start gap-5 bg-white p-5 rounded-lg shadow-lg w-full">
             <Button @click="save" class="absolute top-30 right-15 z-10 cursor-pointer bg-blue-200 hover:bg-blue-300" :class="editMode ? 'bg-green-300 hover:bg-green-400' : ''">{{ editMode ? 'Saglabāt' : 'Rediģēt' }}</Button>
             <div class="flex justify-center lg:justify-start items-end gap-10 flex-wrap">
-                <img class="w-50 rounded-full bg-gray-100 shadow-xl" src="@/assets/logo.png" alt="Logo" />
+
+                <img v-if="!auth.user.avatar" class="w-50 rounded-full bg-gray-100 shadow-xl" src="@/assets/logo.png" alt="Logo" />
+                <img v-if="auth.user.avatar" class="w-50 rounded-full bg-gray-100 shadow-xl" :src="`http://89.254.131.120:8005/storage/avatars/${auth.user.avatar}`" alt="Avatar" />
+                <Input @input="fileChange" type="file" v-if="editMode" placeholder="Izvēlieties attēlu" class="border p-1 rounded" />
+
                 <div class="mb-5">
                     <h1 class="text-2xl font-bold">{{ auth.user.name }}</h1>
                     <p class="text-gray-600">{{ auth.user.role.role_name }}</p>
@@ -134,12 +155,6 @@ const form = ref({
                         <Input v-else v-model="form.address" class="border p-1 rounded" />
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="mt-5 flex flex-col items-start gap-5 w-full" v-if="activePayments">
-            <div class="flex-1 border-1 bg-gray-100 p-5 rounded-lg shadow-lg w-full">
-                <h2 class="text-xl font-semibold mb-3">Nākamie maksājumi</h2>
-                <p class="text-gray-600">Šobrīd nav gaidošu maksājumu.</p>
             </div>
         </div>
     </div>

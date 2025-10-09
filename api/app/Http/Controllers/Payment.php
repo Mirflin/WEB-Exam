@@ -19,4 +19,10 @@ class Payment extends Controller
 
         return response()->json(['payments' => $payments], 200);
     }
+
+    public function allPayments(Request $request)
+    {
+        $payments = \App\Models\Payment::with('policy', 'status', 'policy.client.user')->get();
+        return response()->json(['payments' => $payments], 200);
+    }
 }

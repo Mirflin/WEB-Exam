@@ -6,6 +6,7 @@ import Vue3Datatable from '@bhplugin/vue3-datatable';
 import moment from 'moment';
 import Button from '@/components/ui/button/Button.vue';
 import { RefreshCcw, Trash2Icon } from 'lucide-vue-next';
+import { Notivue, Notification, push } from 'notivue'
 
 const polises = ref([]);
 const loading = ref(false);
@@ -19,7 +20,7 @@ const fetchPolises = async () => {
     try {
         const response = await axios.get('/api/polises-list');
         polises.value = response.data.polises;
-        console.log(polises.value);
+        
     } catch (error) {
         console.error('Error fetching polises:', error);
     } finally {
@@ -41,17 +42,29 @@ const cols = ref([
 const deletePolise = async (id) => {
     try {
         await axios.post('/api/polis-delete', { id: id });
-        polises.value = polises.value.filter(polis => polis.id !== id);
+        fetchPolises();
+        push.success('Poliss veiksmīgi izdzēsta!');
     } catch (error) {
         console.error('Error deleting polis:', error);
     }
 };
+
+const setType = (type) => {
+    if(type === 'car') return 'Auto'
+    if(type === 'house') return 'Māja'
+    if(type === 'life') return 'Dzīvība'
+    if(type === 'tour') return 'Ceļojums'
+    return 'Cits'
+}
 
 
 </script>
 
 <template>
     <div>
+        <Notivue v-slot="item">
+            <Notification :item="item" />
+        </Notivue>
         <div class="mb-5 flex justify-between items-center">
             <h1 class="text-2xl font-bold mb-5">Polises</h1>
             <Button @click="fetchPolises" class="cursor-pointer hover:bg-gray-100"><RefreshCcw /></Button>
@@ -59,6 +72,10 @@ const deletePolise = async (id) => {
         <vue3-datatable :rows="polises" :columns="cols" :loading="loading" :sortable="true" :columnFilter="true">
             <template #created_at="data">
                 {{ moment(data.value.start_date).format('YYYY-MM-DD') }}
+            </template>
+            
+            <template #type="data">
+                {{ setType(data.value.type) }}
             </template>
 
             <template #client.name="data">
