@@ -160,4 +160,26 @@ class Policy extends Controller
 
         return response()->json(['message' => 'Policy restored successfully', 'policy' => $policy], 200);
     }
+
+    public function allPolises()
+    {
+        $polises = \App\Models\Policies::with('client', 'client.user')->get();
+        return response()->json(['polises' => $polises], 200);
+    }
+
+    public function deletePolise(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|integer|exists:policies,id',
+        ]);
+
+        $policy = \App\Models\Policies::find($validatedData['id']);
+        if (!$policy) {
+            return response()->json(['message' => 'Policy not found'], 404);
+        }
+
+        $policy->delete();
+
+        return response()->json(['message' => 'Policy deleted successfully'], 200);
+    }
 }

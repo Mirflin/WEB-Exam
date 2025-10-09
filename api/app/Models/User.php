@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(UserRole::class);
     }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class, 'user_id', 'id');
+    }
 }

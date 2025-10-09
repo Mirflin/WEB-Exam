@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 Route::get('/user', function (Request $request) {
-    $user = User::with('role')->find($request->user()->id);
+    $user = User::with('role', 'client')->find($request->user()->id);
     return $user;
 })->middleware('auth:sanctum');
 
@@ -17,6 +17,9 @@ Route::post('/clients', function (Request $request) {
 
 Route::post('/user-update', [App\Http\Controllers\User::class, 'update'])->middleware('auth:sanctum');
 
+Route::post('/user-delete', [App\Http\Controllers\User::class, 'delete'])->middleware('auth:sanctum');
+
+Route::post('/user-restore', [App\Http\Controllers\User::class, 'restore'])->middleware('auth:sanctum');
 
 Route::post('/policies', [App\Http\Controllers\Policy::class, 'list'])->middleware('auth:sanctum');
 
@@ -30,3 +33,8 @@ Route::post('/policies-restore', [App\Http\Controllers\Policy::class, 'restore']
 
 Route::post('/payments', [App\Http\Controllers\Payment::class, 'list'])->middleware('auth:sanctum');
 
+Route::post('/all-users', [App\Http\Controllers\User::class, 'allUsers'])->middleware('auth:sanctum');
+
+Route::get('/polises-list', [App\Http\Controllers\Policy::class, 'allPolises'])->middleware('auth:sanctum');
+
+Route::post('/polis-delete', [App\Http\Controllers\Policy::class, 'deletePolise'])->middleware('auth:sanctum');

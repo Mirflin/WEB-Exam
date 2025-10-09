@@ -24,8 +24,12 @@ const components = {
     profile: defineAsyncComponent(() => import('./Pages/Profile.vue')),
     policies: defineAsyncComponent(() => import('./Pages/Policies.vue')),
     payments: defineAsyncComponent(() => import('./Pages/Payments.vue')),
+    admin: defineAsyncComponent(() => import('./Pages/Admin.vue')),
+    users: defineAsyncComponent(() => import('./Pages/Users.vue')),
+    allpolicies: defineAsyncComponent(() => import('./Pages/Polises.vue')),
+    allpayments: defineAsyncComponent(() => import('./Pages/AllPayment.vue')),
+    contacts: defineAsyncComponent(() => import('./Pages/Contacts.vue')),
 }
-
 
 </script>
 
